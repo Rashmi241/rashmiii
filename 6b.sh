@@ -7,4 +7,4 @@ if [ $fl -ge 10 ]
 then 
 echo $i
 fi
-done
+ done
