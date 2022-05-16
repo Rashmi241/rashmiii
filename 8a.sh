@@ -1,25 +1,22 @@
-echo -n "enter the user name:\c"
-read usr
-tuser=`who | tr -s " " | head -1 | cut -d " " -f1`
-if [ "$tuser" = "$usr" ]
+m=who | grep "`whoami`" | tr -s " " | cut -d " " -f4 | cut -c 4-5
+h=who | grep "`whoami`" | tr -s " " | cut -d " " -f4 | cut -c 1-2
+ch=`date +%H`
+cm=`date +%M`
+d=`expr $cm - $m` 
+echo $d
+if [ $d -lt 0 ]
 then
-tm=`who | tr -s " " | head -1 | cut -d " " -f4`
-uhr=`echo $tm | cut -d ":" -f1`
-umin=`echo $tm | cut -d ":" -f2`
-shr=`date "+%H"`
-smin=`date "+%M"`
-if [ $smin -lt $umin ]
-then
-shr=`expr $shr - 1`
-smin=`expr $smin + 60`
+	d=`expr $d + 60`
+	echo $d
 fi
-h=`expr $shr - $uhr`
-m=`expr $smin - $umin`
-echo "user name:$usr"
-echo "login period:$h Hours:$m Minute "
-else
-echo "invalid user"
+hh=$h-$ch
+echo $hh
+if [ $hh -lt 0 ]
+then
+	hh=`expr $hh + 24`
+	echo $hh
 fi
 
+echo "m: $m"
 
 
