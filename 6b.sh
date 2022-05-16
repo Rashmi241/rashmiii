@@ -1,3 +1,4 @@
+#Write a shell script to list all the files in a directory whose filename is at least 10 characters.
 for i in `ls`
 do 
 fl=`expr length $i`
