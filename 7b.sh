@@ -1,4 +1,5 @@
-
+#Write a shell script that accepts a list of filenames as its argument, count and report
+#occurrence of each word that is present in the first argument file on other argument files.
 for fn in $*
 do
 	if [ $fn = $1 ]
