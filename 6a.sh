@@ -6,25 +6,29 @@
 
 if [ $# -eq 1 ]
 then
-if [ -d ~/mydir ]
-then
-set -- `find ~ -name "$1"`
-for i in $*
-do
-cp $i ~/mydir 2>er
-done
-if [ $# -eq 0 ]
-then
-echo "No such file"
+	if [ -e $1 ]
+	then
+		if [ -d ~/mydir ]
+		then
+			set -- `find ~ -name "$1"`
+			for i in $*
+			do
+				cp $i ~/mydir 2>error
+			done
+			cat $i
+		else
+			mkdir ~/mydir
+			for i in $*
+			do
+				cp $i ~/mydir 2>error
+			done
+			cat $i
+		fi
+	else
+		echo No such file
+	fi
 else
-cat $i
+	echo Provide argument
 fi
-else
-echo "No such directory"
-fi
-else
-echo "enter argument"
-fi
-
     
 
